@@ -5,7 +5,7 @@ const tempType = document.querySelector('#type');
 const form = document.querySelector('#convert-form');
 let message = document.querySelector('.result');
 let result; 
-
+let type;
 
 // Load all event listeners
 loadEventListeners();
@@ -35,7 +35,7 @@ function userConversionType(e){
 
 
 // Calculate the Temperature Conversion
-function calculateTemp(e){
+function calculateTemp(){
     if(tempInput.value === ''){
         errorMessage();
     }
@@ -43,13 +43,15 @@ function calculateTemp(e){
         console.log('Calculating Celcius To Fahrenheit...');
         result = (tempInput.value * 1.8) + 32;
         result = result.toFixed(2);
-        console.log(`${tempInput.value} is equal to ` + result + ` Degrees Fahrenheit`);
+        type = 'Fahrenheit';
+        console.log(`${tempInput.value} is equal to ` + result + ` Degrees ` + type);
         setMessage();
     } else {
         console.log('Calculating Fahrenheit To Celcius...');
         result = (tempInput.value - 32) * 5 / 9;
         result = result.toFixed(2);
-        console.log(`${tempInput.value} is equal to ` + result + ` Degrees Celcius`);
+        type = 'Celcius';
+        console.log(`${tempInput.value} is equal to ` + result + ` Degrees ` + type);
         setMessage();
     }
 }
@@ -57,7 +59,7 @@ function calculateTemp(e){
 
 // Set Message - This makes it a bit cleaner rather than putting it all in the same calculateTemp function...
 function setMessage(){
-    message.textContent = `${tempInput.value} is equal to ` + result + ` Degrees Fahrenheit`;
+    message.textContent = `${tempInput.value} is equal to ` + result + ` Degrees ` + type;
     message.style.color = 'initial';
 }
 
